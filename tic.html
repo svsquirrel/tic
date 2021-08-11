@@ -8,13 +8,30 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <header>
+    <header class = 'notices'>
         <div class = 'title'>Tic Tac Toe</div>
-        <div class = 'player1'></div>
-        <div class = 'player2'></div>
+        <div class = 'left'>
+            <p id = 'playerone'>Me</p>
+            <p class = 'goaway whatsup1'></p>
+        </div>
+        <button class = 'reset'>Play Again?</button>
+        <div class = 'right'>
+            <p id = 'playertwo' >Droid</p>
+            <p class ='goaway  whatsup2'></p>
+        </div>
     </header>
     <div class = 'container'> 
-        <div id = 'gameboard'class = 'gamespace'></div>
+        <div id = 'gameboard'class = 'gamespace'>
+            <div id="item-1" class="item"></div>
+            <div id="item-2" class="item"></div>
+            <div id="item-3" class="item"></div>
+            <div id="item-4" class="item"></div>
+            <div id="item-5" class="item"></div>
+            <div id="item-6" class="item"></div>
+            <div id="item-7" class="item"></div>
+            <div id="item-8" class="item"></div>
+            <div id="item-9" class="item"></div>
+         </div>
     </div>
 <script src = 'tic.js'></script>
 </body>

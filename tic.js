@@ -6,22 +6,23 @@ const playObject = (square, marker) =>{
     return {square, marker};
 };
 
+document.querySelector('.reset').addEventListener('click', restart);
+
+function restart() {
+    document.querySelectorAll('.item').forEach(square => square.textContent = '');
+    document.querySelector('.reset').style.backgroundColor = '#fff';
+    document.querySelectorAll('.goaway').forEach(div =>  div.textContent = '');
+};
+
 /*********Determines what the user sees **********/
 const gameboard = (() => {
-
-    const grid = document.querySelector('.gamespace');
-        for (let i=1; i< 10; i++){
-        const square = document.createElement('div');
-        square.id =  'item-' + i;
-        square.classList.add('item');
+    const grid = document.querySelectorAll('.item');
+        grid.forEach(square => {
         square.addEventListener('click', () => {
             play.getClick(square.id);
         }, {once:true});
-        grid.appendChild(square);
-    };
-   
+        });
     return{ grid };
-     
 })();
 
 /**********Determines whose turn and if the game is over *******/
@@ -30,7 +31,7 @@ const play = (() => {
     const moves = [];
     const player1 = createPlayer('Me', 'X');
     const player2 = createPlayer('Droid', 'O');
-
+    
     let activePlayer = player1;
     const gameOver = false;
     const winningCombos = [
@@ -68,23 +69,27 @@ const play = (() => {
     };
    
     function isEligible(){
-        
         playermoves = moves.filter(player => player.marker == activePlayer.marker);
         if (playermoves.length >=3){
         keyArray = playermoves.map(function(item) { return item['square']; });
-        checkIfWinner(keyArray);
+        checkIfWinner(keyArray, activePlayer);
         }; 
     }; 
     
     function checkIfWinner(){
         winningCombos.forEach(index =>{
             if(index.every(val => keyArray.includes(val)==true)){
-                console.log('winner');
-            }
-        })
-    };
-
-return {
+                if (activePlayer.name = 'Me'){
+                    document.querySelector('.whatsup1').textContent = 'You Won!';
+                }else if (activePlayer.name = 'Droid'){
+                    document.querySelector('.whatsup2').textContent = 'You Won!';
+                };
+            let reset =document.querySelector('.reset')
+            reset.style.backgroundColor = '#cc0000';
+            };
+        });
+     };
+    return {
         activePlayer,
         getClick,
         isEligible,
@@ -93,6 +98,8 @@ return {
 }
     
 }) ();
+
+
 
 
   
